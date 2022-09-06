@@ -16,8 +16,8 @@ namespace StemService.Controllers
 {
     /// <summary>
     /// Provides stem related web methods
-    /// </summary>
-    [Route("api/[controller]")]
+    /// </summary>    
+    [Route("")]
     [ApiController]
     public class StemsController : ControllerBase
     {
@@ -46,27 +46,23 @@ namespace StemService.Controllers
         /// Returns the requested stem data. And returns 404 if data not found.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        //[Route("GET")]
+        [HttpGet]        
+        [Route("/")]
         public async Task<ActionResult<StemResponse>> Get()
         {
             string prefix = Request.Query[QueryStringKey.Stem];
 
-            if (!String.IsNullOrEmpty(prefix))
-            {
-                StemRequest request = new StemRequest { Prefix = prefix };
-                StemResponse response = await _stemService.GetSearchData(request);
+            if (String.IsNullOrEmpty(prefix))
+                prefix = String.Empty;
 
-                if (response.data != null && response.data.Count > 0)
-                    return Ok(response);
-            }
+            StemRequest request = new StemRequest { Prefix = prefix };
+            StemResponse response = await _stemService.GetSearchData(request);
 
-                return NotFound();            
-        }
-        //public StemResponse Get()
-        //{
-        //    return new StemResponse() { data = new string[] { "test" } };
-        //}
+            if (response.data != null && response.data.Count > 0)
+                return Ok(response);
+
+            return NotFound();            
+        }        
 
         #endregion
     }

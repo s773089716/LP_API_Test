@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/stems/?stem=aaron",
+      "launchUrl": "?stem=aaron",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "StemService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/stems/?stem=aaron",
+      "launchUrl": "?stem=aaron",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
